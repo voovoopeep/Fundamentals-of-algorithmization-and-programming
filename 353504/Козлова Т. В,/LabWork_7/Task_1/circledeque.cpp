@@ -1,4 +1,4 @@
-#include "CircleDeque.h"
+#include "circledeque.h"
 
 #include <QString>
 

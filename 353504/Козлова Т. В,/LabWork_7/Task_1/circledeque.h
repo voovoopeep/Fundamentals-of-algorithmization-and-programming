@@ -1,24 +1,22 @@
-#ifndef DEQUE_H
-#define DEQUE_H
+#ifndef CIRCLEDEQUE_H
+#define CIRCLEDEQUE_H
 
-#include <cstddef>
-#include <cstdint>
 #include <iterator>
+
+constexpr size_t BLOCK_SIZE = 8;
+constexpr size_t INITAL_CAPASITY = 2;
+constexpr int64_t NOTHING = -1;
 
 template<typename T>
 class DequeIterator;
 
 template<typename T>
-class Deque
+class CircleDeque
 {
 private:
-    static const size_t BLOCK_SIZE = 8;
-    static const size_t INITAL_CAPASITY = 2;
-    static const int64_t NOTHING = -1;
-
     T **data;
-    size_t _size;     // кол-во элементов
-    size_t _capasity; // кол-во блоков может вместить
+    size_t _size;
+    size_t _capasity;
     int64_t _frontBlock; // номер подмассива в котором находится первый элемент
     int64_t _frontIndex; // индекс первого элемента в подмассиве
     int64_t _backBlock; // номер подмассива в котором находится последний элемент
@@ -29,8 +27,8 @@ private:
 public:
     using iterator = DequeIterator<T>;
 
-    Deque();
-    ~Deque();
+    CircleDeque();
+    ~CircleDeque();
     void push_back(T data);
     void push_front(T data);
 
@@ -52,7 +50,7 @@ template<typename T>
 class DequeIterator
 {
 private:
-    Deque<T> *deque;
+    CircleDeque<T> *deque;
     size_t index;
 
 public:
@@ -62,24 +60,24 @@ public:
     using reference = T &;
     using iterator_category = std::random_access_iterator_tag;
 
-    DequeIterator(Deque<T> *deque, size_t index)
+    DequeIterator(CircleDeque<T> *deque, size_t index)
         : deque(deque)
         , index(index)
     {}
 
-    T &operator*() { return deque[index]; }
+    T &operator*() { return (*deque)[index]; }
 
-    const T &operator*() const { return deque[index]; }
+    const T &operator*() const { return (*deque)[index]; }
 
     DequeIterator operator++()
     {
-        ++index;
+        index = (index + 1) % (deque->size());
         return *this;
     }
 
     DequeIterator operator--()
     {
-        --index;
+        index = (index - 1 + deque->size()) % (deque->size());
         return *this;
     }
 
@@ -116,4 +114,4 @@ public:
     bool operator>=(const DequeIterator &other) const { return index >= other.index; }
 };
 
-#endif // DEQUE_H
+#endif // CIRCLEDEQUE_H
