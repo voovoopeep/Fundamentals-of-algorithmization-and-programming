@@ -13,7 +13,11 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    iterator.h \
+    mainwindow.h \
+    pair.h \
+    reverceiterator.h \
+    vector.h
 
 FORMS += \
     mainwindow.ui
