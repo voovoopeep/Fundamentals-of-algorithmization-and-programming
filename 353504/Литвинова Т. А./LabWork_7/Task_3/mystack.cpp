@@ -1,4 +1,4 @@
-#include "my_stack.h"
+#include "mystack.h"
 
 my_stack::my_stack() {}
 
@@ -21,7 +21,7 @@ void my_stack::clear() {
 
 void my_stack::push(int new_item) {
     if (isFull()) {
-        throw "Stack overflow";
+        throw "Стек переполнен";
     }
     ++top;
     items[top] = new_item;
@@ -29,7 +29,7 @@ void my_stack::push(int new_item) {
 
 int my_stack::pop() {
     if (isEmpty()) {
-        throw "Stack underflow";
+        throw "Стек незаполнен";
     }
     int removed_item = items[top];
     --top;
@@ -40,7 +40,7 @@ int my_stack::peek() const {
     if (!isEmpty()) {
         return items[top];
     }
-    throw "Stack underflow";
+    throw "Стек незаполнен";
 }
 
 QVector<int> my_stack::toQVector() {

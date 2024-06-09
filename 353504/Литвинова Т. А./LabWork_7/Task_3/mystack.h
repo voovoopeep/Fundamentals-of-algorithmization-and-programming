@@ -1,5 +1,5 @@
-#ifndef MY_STACK_H
-#define MY_STACK_H
+#ifndef MYSTACK_H
+#define MYSTACK_H
 
 #include <QVector>
 
@@ -21,4 +21,4 @@ public:
     QVector<int> toQVector();
 };
 
-#endif // MY_STACK_H
+#endif // MYSTACK_H

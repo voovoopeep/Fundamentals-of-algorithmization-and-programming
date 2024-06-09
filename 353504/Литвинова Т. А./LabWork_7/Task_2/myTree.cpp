@@ -1,28 +1,28 @@
-#include "my_tree.h"
+#include "myTree.h"
 
-my_tree::my_tree() : root(nullptr) {}
+myTree::myTree() : root(nullptr) {}
 
 
-my_tree::~my_tree() {
+myTree::~myTree() {
     destroySubTree(root);
 }
 
-tree_node *my_tree::getRoot()
+treeNode *myTree::getRoot()
 {
     return root;
 }
 
-void my_tree::insert(QPair<int, QString> pair) {
+void myTree::insert(QPair<int, QString> pair) {
     root = insertNode(root, pair);
 }
 
-tree_node* my_tree::insertNode(tree_node* node, QPair<int, QString> pair) {
+treeNode* myTree::insertNode(treeNode* node, QPair<int, QString> pair) {
     if (node == nullptr) {
-        return new tree_node(pair.first, pair.second);
+        return new treeNode(pair.first, pair.second);
     }
 
-    tree_node* current = node;
-    tree_node* parent = nullptr;
+    treeNode* current = node;
+    treeNode* parent = nullptr;
 
     while (current != nullptr) {
         parent = current;
@@ -36,16 +36,16 @@ tree_node* my_tree::insertNode(tree_node* node, QPair<int, QString> pair) {
     }
 
     if (pair.first < parent->key) {
-        parent->left = new tree_node(pair.first, pair.second);
+        parent->left = new treeNode(pair.first, pair.second);
     } else {
-        parent->right = new tree_node(pair.first, pair.second);
+        parent->right = new treeNode(pair.first, pair.second);
     }
 
     return node;
 }
 
-int my_tree::search(int key) {
-    tree_node* node = findNodeByKey(root, key);
+int myTree::search(int key) {
+    treeNode* node = findNodeByKey(root, key);
     if (node != nullptr) {
         return node->key;
     } else {
@@ -53,9 +53,9 @@ int my_tree::search(int key) {
     }
 }
 
-QString my_tree::searchStringByKey(int key)
+QString myTree::searchStringByKey(int key)
 {
-    tree_node* node = findNodeByKey(root, key);
+    treeNode* node = findNodeByKey(root, key);
     if (node != nullptr) {
         return node->data;
     } else {
@@ -63,7 +63,7 @@ QString my_tree::searchStringByKey(int key)
     }
 }
 
-tree_node* my_tree::findNodeByKey(tree_node* node, int key) {
+treeNode* myTree::findNodeByKey(treeNode* node, int key) {
     while (node != nullptr && node->key != key) {
         if (key < node->key) {
             node = node->left;
@@ -74,17 +74,17 @@ tree_node* my_tree::findNodeByKey(tree_node* node, int key) {
     return node;
 }
 
-void my_tree::remove(int key) {
+void myTree::remove(int key) {
     root = deleteNode(root, key);
 }
 
-tree_node* my_tree::deleteNode(tree_node* node, int key) {
+treeNode* myTree::deleteNode(treeNode* node, int key) {
     if (node == nullptr) {
         return nullptr;
     }
 
-    tree_node* current = node;
-    tree_node* parent = nullptr;
+    treeNode* current = node;
+    treeNode* parent = nullptr;
 
     while (current != nullptr && current->key != key) {
         parent = current;
@@ -113,7 +113,7 @@ tree_node* my_tree::deleteNode(tree_node* node, int key) {
             delete current;
             return root;
         } else {
-            tree_node* successor = findMinimum(current->right);
+            treeNode* successor = findMinimum(current->right);
             current->key = successor->key;
             current->data = successor->data;
             current->right = deleteNode(current->right, successor->key);
@@ -147,7 +147,7 @@ tree_node* my_tree::deleteNode(tree_node* node, int key) {
     }
     // Case 4: Node has two children
     else {
-        tree_node* successor = findMinimum(current->right);
+        treeNode* successor = findMinimum(current->right);
         current->key = successor->key;
         current->data = successor->data;
         current->right = deleteNode(current->right, successor->key);
@@ -156,14 +156,14 @@ tree_node* my_tree::deleteNode(tree_node* node, int key) {
     return node;
 }
 
-tree_node* my_tree::findMinimum(tree_node* node) {
+treeNode* myTree::findMinimum(treeNode* node) {
     while (node->left != nullptr) {
         node = node->left;
     }
     return node;
 }
 
-void my_tree::destroySubTree(tree_node* node) {
+void myTree::destroySubTree(treeNode* node) {
     if (node != nullptr) {
         destroySubTree(node->left);
         destroySubTree(node->right);
@@ -171,7 +171,7 @@ void my_tree::destroySubTree(tree_node* node) {
     }
 }
 
-void my_tree::preOrderTraversal(tree_node* node, QVector<QPair<int, QString>>& vec) {
+void myTree::preOrderTraversal(treeNode* node, QVector<QPair<int, QString>>& vec) {
     if (node != nullptr) {
         vec.append(qMakePair(node->key, node->data));
         preOrderTraversal(node->left, vec);
@@ -179,13 +179,13 @@ void my_tree::preOrderTraversal(tree_node* node, QVector<QPair<int, QString>>& v
     }
 }
 
-QVector<QPair<int, QString>> my_tree::getPreOrder() {
+QVector<QPair<int, QString>> myTree::getPreOrder() {
     QVector<QPair<int, QString>> result;
     preOrderTraversal(root, result);
     return result;
 }
 
-void my_tree::postOrderTraversal(tree_node* node, QVector<QPair<int, QString>>& vec) {
+void myTree::postOrderTraversal(treeNode* node, QVector<QPair<int, QString>>& vec) {
     if (node != nullptr) {
         postOrderTraversal(node->left, vec);
         postOrderTraversal(node->right, vec);
@@ -193,13 +193,13 @@ void my_tree::postOrderTraversal(tree_node* node, QVector<QPair<int, QString>>& 
     }
 }
 
-QVector<QPair<int, QString>> my_tree::getPostOrder() {
+QVector<QPair<int, QString>> myTree::getPostOrder() {
     QVector<QPair<int, QString>> result;
     postOrderTraversal(root, result);
     return result;
 }
 
-void my_tree::inOrderTraversal(tree_node* node, QVector<QPair<int, QString>>& vec) {
+void myTree::inOrderTraversal(treeNode* node, QVector<QPair<int, QString>>& vec) {
     if (node != nullptr) {
         inOrderTraversal(node->left, vec);
         vec.append(qMakePair(node->key, node->data));
@@ -207,36 +207,36 @@ void my_tree::inOrderTraversal(tree_node* node, QVector<QPair<int, QString>>& ve
     }
 }
 
-QVector<QPair<int, QString>> my_tree::getInOrder() {
+QVector<QPair<int, QString>> myTree::getInOrder() {
     QVector<QPair<int, QString>> result;
     inOrderTraversal(root, result);
     return result;
 }
 
-void my_tree::buildTreeFromVector(QVector<QPair<int, QString>> data) {
+void myTree::buildTreeFromVector(QVector<QPair<int, QString>> data) {
     for (const auto& pair : data) {
         insert(pair);
     }
 }
 
-tree_node* my_tree::buildBalancedTreeHelper(QVector<QPair<int, QString>>& sortedPairs, int start, int end) {
+treeNode* myTree::buildBalancedTreeHelper(QVector<QPair<int, QString>>& sortedPairs, int start, int end) {
     if (start > end) {
         return nullptr;
     }
 
     int mid = (start + end) / 2;
-    tree_node* newNode = new tree_node(sortedPairs[mid].first, sortedPairs[mid].second);
+    treeNode* newNode = new treeNode(sortedPairs[mid].first, sortedPairs[mid].second);
     newNode->left = buildBalancedTreeHelper(sortedPairs, start, mid - 1);
     newNode->right = buildBalancedTreeHelper(sortedPairs, mid + 1, end);
     return newNode;
 }
 
-void my_tree::balanceTree() {
+void myTree::balanceTree() {
     QVector<QPair<int, QString>> sortedPairs = getInOrder();
     root = buildBalancedTreeHelper(sortedPairs, 0, sortedPairs.size() - 1);
 }
 
-void my_tree::countLeavesPerLevel(tree_node* node, QVector<int>& leafCounts, int level) {
+void myTree::countLeavesPerLevel(treeNode* node, QVector<int>& leafCounts, int level) {
     if (node == nullptr) {
         return;
     }
@@ -253,7 +253,7 @@ void my_tree::countLeavesPerLevel(tree_node* node, QVector<int>& leafCounts, int
     countLeavesPerLevel(node->right, leafCounts, level + 1);
 }
 
-QVector<int> my_tree::getLeavesPerLevel() {
+QVector<int> myTree::getLeavesPerLevel() {
     QVector<int> leafCounts;
     countLeavesPerLevel(root, leafCounts, 0);
     return leafCounts;
