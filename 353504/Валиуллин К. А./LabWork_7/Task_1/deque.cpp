@@ -96,23 +96,20 @@ Node<T>* Deque<T>::get_head() const {
 
 template<typename T>
 void Deque<T>::remove_between_max_min() {
-    if (size < 3) return; // Если в очереди меньше 3 элементов, ничего удалять не нужно.
+    if (size < 3) return;
 
     Node<T>* current = head;
     Node<T>* maxNode = head;
     Node<T>* minNode = head;
 
-    // Найдем узлы с максимальным и минимальным значениями.
     while (current) {
         if (current->data > maxNode->data) maxNode = current;
         if (current->data < minNode->data) minNode = current;
         current = current->next;
     }
 
-    // Если minNode и maxNode идут подряд, ничего удалять не нужно.
     if (minNode->next == maxNode || maxNode->next == minNode) return;
 
-    // Определяем, какой из узлов идет первым.
     Node<T>* start;
     Node<T>* end;
 
@@ -130,7 +127,6 @@ void Deque<T>::remove_between_max_min() {
         current = current->next;
     }
 
-    // Удалим узлы между start и end.
     Node<T>* toDelete = start->next;
     while (toDelete != end) {
         Node<T>* nextNode = toDelete->next;
@@ -139,7 +135,6 @@ void Deque<T>::remove_between_max_min() {
         size--;
     }
 
-    // Связывание start и end.
     start->next = end;
     end->prev = start;
 }
