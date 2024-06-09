@@ -13,16 +13,12 @@ void deletingBranchBST::removeSubtree(int key) {
     }
 
     if (node == nullptr) {
-        // Узел с заданным ключом не найден
         return;
     }
 
-    // Удаляем поддерево
     deleteSubtree(node);
 
-    // Удаляем ссылку на узел в его родителе
     if (parent == nullptr) {
-        // Удаляем корень дерева
         root = nullptr;
     } else if (parent->left == node) {
         parent->left = nullptr;
