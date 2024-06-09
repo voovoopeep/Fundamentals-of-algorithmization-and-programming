@@ -1,27 +1,35 @@
-#ifndef L3T1_PAIR_H
-#define L3T1_PAIR_H
+#include<QApplication>
+template <typename First, typename Second>
+struct Pair {
+    First first;
+    Second second;
 
-template<typename T1, typename T2>
-struct pair {
-    T1 first;
-    T2 second;
-
-    pair() = default;
-
-    pair(T1 a, T2 b) {
-        this->first = a;
-        this->second = b;
+    Pair() : first(), second() {
+        qDebug()<<"ALLLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOO";
     }
 
-    pair(std::initializer_list<pair> a) {
-        pair(*a.begin());
+    Pair(const First& first, const Second& second)
+        : first(first), second(second) {}
+
+    void swap(Pair<First, Second>& other) {
+        First buf1 = first;
+        first = other.first;
+        other.first = buf1;
+        Second buf2 = second;
+        second = other.second;
+        other.second = buf2;
     }
 
-    void operator=(pair const &pair_) {
-        first = pair_.first;
-        second = pair_.second;
-
+    Pair<First, Second>& operator=(const Pair<First, Second>& other) {
+        if (this != &other) {
+            first = other.first;
+            second = other.second;
+        }
+        return *this;
     }
-
 };
-#endif //L3T1_PAIR_H
+
+template <typename First, typename Second>
+Pair<First, Second> make_pair(const First& first, const Second& second) {
+    return Pair<First, Second>(first, second);
+}

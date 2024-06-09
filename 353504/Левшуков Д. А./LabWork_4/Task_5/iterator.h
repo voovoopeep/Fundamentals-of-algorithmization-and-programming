@@ -1,157 +1,123 @@
-#ifndef L3T1_ITERATOR_H
-#define L3T1_ITERATOR_H
+#ifndef ITERATOR_H
+#define ITERATOR_H
 
-#include <cstdio>
+namespace it{
 
-template<typename T>
-class iterator {
-
-    T *it;
-
+template<class T>
+class const_iterator{
+    const T* it;
 public:
+    const_iterator();
 
-    explicit iterator(T *tmp) {
-        it = tmp;
+    const_iterator(T* it);
+
+    const T *operator->();
+
+    bool operator !=(const const_iterator<T>&b);
+    const_iterator operator+(int value)
+    {
+        return const_iterator(it + value);
     }
 
-    ~iterator() = default;
-
-    const T *base() const {
-        return it;
+    const_iterator &operator = (const const_iterator &b)
+    {
+        it = b.it;
+        return *this;
     }
-
-    // *
-    T &operator*() const {
+    const T &operator*()
+    {
         return *it;
     }
 
-    // ->
-    T *operator->() const {
+    const T*get();
+    
+    const T *base() const
+    {
         return it;
-    }
-
-    // ++ | --
-    iterator &operator++() {
-        ++it;
-        return *this;
-    }
-
-    iterator &operator--() {
-        --it;
-        return *this;
-    }
-
-    iterator operator++(int) {
-        return iterator(it++);
-    }
-
-    iterator operator--(int) {
-        return iterator(it--);
-    }
-
-    // + | -
-    iterator operator+(int n) {
-        return iterator(it + n);
-    }
-
-    iterator operator-(size_t n) {
-        return iterator(it - n);
-    }
-
-    // += | -=
-    iterator &operator+=(size_t n) {
-        it += n;
-        return *this;
-    }
-
-    iterator &operator-=(size_t n) {
-        it -= n;
-        return *this;
-    }
-
-    // []
-    T operator[](size_t n) {
-        return it[n];
-    }
-
-    bool operator !=(iterator x) {
-        return it != x.operator->();
-    }
+    } 
 
 };
 
-template<typename T>
-class reverse_iterator {
+template<class T>
+class iterator:public const_iterator<T>{
+protected:
+    T* it;
+public:
+    iterator();
 
-    T *it;
 
+    iterator(const iterator <T>& it);
+
+    iterator(T *iter);
+    
+    const T *base() const
+    {
+        return it;
+    } 
+
+    T *operator->();
+
+    virtual bool operator !=(iterator b);
+
+    bool operator ==(iterator b);
+
+    iterator &operator=(const iterator &b);
+
+    iterator &operator=(const iterator *b);
+
+    iterator<T>& operator++();
+
+    T&operator*();
+
+    T *get();
+};
+
+template<class T>
+class reverse_iterator:public iterator<T>{
+protected:
+    T* it;
 public:
 
-    explicit reverse_iterator(T *tmp) {
-        it = tmp;
+
+    reverse_iterator()
+    {
+        it=nullptr;
     }
 
-    ~reverse_iterator() = default;
+    reverse_iterator(const iterator <T>& it);
 
-    const T &base() const {
-        return *it;
-    }
 
-    // *
-    T &operator*() const {
-        return *it;
-    }
+    reverse_iterator(T *iter);
 
-    // ->
-    T *operator->() const {
-        return  it;
-    }
+    T *operator->();
+    
+     const T *base() const
+    {
+        return it;
+    } 
 
-    // ++ | --
-    reverse_iterator &operator++() {
-        --it;
+    virtual bool operator !=(reverse_iterator b);
+
+    bool operator ==(reverse_iterator b);
+
+    reverse_iterator &operator=(const reverse_iterator &b)
+    {
+        it = b.it;
         return *this;
     }
 
-    reverse_iterator &operator--() {
-        ++it;
+    reverse_iterator &operator=(const reverse_iterator *b)
+    {
+        it = b->it;
         return *this;
     }
 
-    reverse_iterator operator++(int) {
-        return reverse_iterator(it--);
-    }
+    T&operator*();
 
-    reverse_iterator operator--(int) {
-        return reverse_iterator(it++);
-    }
-
-    // + | -
-    reverse_iterator operator+(size_t n) {
-        return reverse_iterator(it - n);
-    }
-
-    reverse_iterator operator-(size_t n) {
-        return reverse_iterator(it + n);
-    }
-
-    // += | -=
-    reverse_iterator &operator+=(size_t n) {
-        it -= n;
-        return *this;
-    }
-
-    reverse_iterator &operator-=(size_t n) {
-        it += n;
-        return *this;
-    }
-
-    // []
-    T operator[](size_t n) {
-        return it[n];
-    }
-
+    T *get();
 };
 
 
-#endif
+}
+
+#endif // ITERATOR_H
