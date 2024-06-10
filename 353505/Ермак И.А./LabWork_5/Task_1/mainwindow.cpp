@@ -395,13 +395,9 @@ void MainWindow::SetStyleSheet() {
                               "}"
                               );
     auto palette = ui->value_accur->palette();
-    // foreground color
     palette.setColor(palette.WindowText, Qt::blue);
-    // "light" border
     palette.setColor(palette.Light, QColor(255, 0, 0));
-    // "dark" border
     palette.setColor(palette.Dark, QColor(0, 255, 0));
-    // set the palette back
     ui->value_accur->setPalette(palette);
     ui->value_simb->setPalette(palette);
     ui->value_timer->setPalette(palette);
@@ -444,7 +440,7 @@ void MainWindow::stopTimer() {
 void MainWindow::updateLCD() {
     qint64 currentTime = QDateTime::currentMSecsSinceEpoch();
     qint64 elapsedTime = currentTime - startTime;
-    ui->value_timer->display(QString::number(elapsedTime / 1000.0)); // convert milliseconds to seconds
+    ui->value_timer->display(QString::number(elapsedTime / 1000.0));
     int simbol = 0;
     ui->value_simb->display(QString::number(simbol));
     int acc = 0;
@@ -456,26 +452,24 @@ void MainWindow::changeKeyboard(int index) {
     setNewKeyboard();
 }
 
-////////////////////////////////
-////////////////////////////////
 
 QVector<QVector<QString>> MainWindow::getBelarusianKeyboard() {
     QVector<QVector<QString>> belarusianKeyboard = {
-        // Обычная раскладка
+
         {"ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "й", "ц", "у", "к", "е", "н", "г", "ш", "ў", "з", "х", "`", "\\",
             "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э",
             "shift", "я", "ч", "с", "м", "і", "т", "ь", "б", "ю", ".", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"Ё", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+",
             "Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Ў", "З", "Х", "`", "|",
             "caps", "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э",
             "shift", "Я", "Ч", "С", "М", "І", "Т", "Ь", "Б", "Ю", ":", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"Ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Ў", "З", "Х", "`", "\\",
             "caps", "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э",
@@ -489,21 +483,21 @@ QVector<QVector<QString>> MainWindow::getBelarusianKeyboard() {
 
 QVector<QVector<QString>> MainWindow::getGermanKeyboard() {
     QVector<QVector<QString>> germanKeyboard = {
-        // Обычная раскладка
+
         {"^", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "ß", "´",
             "q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü", "+",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "#",
             "shift", "<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"°", "!", "\"", "§", "$", "%", "&", "/", "(", ")", "=", "?", "`",
             "Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ü", "*",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "'",
             "shift", ">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"^", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "ß", "´",
             "Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ü", "+",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "#",
@@ -517,21 +511,21 @@ QVector<QVector<QString>> MainWindow::getGermanKeyboard() {
 
 QVector<QVector<QString>> MainWindow::getFrenchKeyboard() {
     QVector<QVector<QString>> frenchKeyboard = {
-        // Обычная раскладка
+
         {"²", "&", "é", "\"", "'", "(", "-", "è", "_", "ç", "à", ")", "=",
             "a", "z", "e", "r", "t", "y", "u", "i", "o", "p", "^", "$",
             "caps", "q", "s", "d", "f", "g", "h", "j", "k", "l", "m", "ù", "*",
             "shift", "<", "w", "x", "c", "v", "b", "n", ",", ";", ":", "!", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"É", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "°", "+",
             "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "¨", "£",
             "caps", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "%", "µ",
             "shift", ">", "W", "X", "C", "V", "B", "N", "?", ".", "/", "§", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"²", "&", "É", "\"", "'", "(", "-", "È", "_", "Ç", "À", ")", "=",
             "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "^", "$",
             "caps", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "Ù", "*",
@@ -545,21 +539,21 @@ QVector<QVector<QString>> MainWindow::getFrenchKeyboard() {
 
 QVector<QVector<QString>> MainWindow::getEnglishKeyboard() {
     QVector<QVector<QString>> englishKeyboard = {
-        // Обычная раскладка
+
         {"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'",
             "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+",
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "\"",
             "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'",
@@ -573,21 +567,21 @@ QVector<QVector<QString>> MainWindow::getEnglishKeyboard() {
 
 QVector<QVector<QString>> MainWindow::getChinesseKeyboard() {
     QVector<QVector<QString>> chinesseKeyboard = {
-        // Обычная раскладка
+
         {"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'",
             "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+",
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "\"",
             "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'",
@@ -601,21 +595,21 @@ QVector<QVector<QString>> MainWindow::getChinesseKeyboard() {
 
 QVector<QVector<QString>> MainWindow::getArabicKeyboard() {
     QVector<QVector<QString>> arabicKeyboard = {
-        // Обычная раскладка
+
         {"ذ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د", "\\",
             "caps", "ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط",
             "shift", "ئ", "ء", "ؤ", "ر", "ى", "ة", "و", "ز", "ظ", ".", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"ّ", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+",
             "َ", "ً", "ُ", "ٌ", "لإ", "إ", "‘", "÷", "×", "؛", "<", ">", "|",
             "caps", "ِ", "ٍ", "]", "[", "لأ", "أ", "ـ", "،", "/", ":", "\"",
             "shift", "~", "ْ", "}", "{", "؟", ".", ",", "،", "؛", "٠", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"ذ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د", "\\",
             "caps", "ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط",
@@ -629,21 +623,21 @@ QVector<QVector<QString>> MainWindow::getArabicKeyboard() {
 
 QVector<QVector<QString>> MainWindow::getHebrewKeyboard() {
     QVector<QVector<QString>> hebrewKeyboard = {
-        // Обычная раскладка
+
         {";", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "ק", "ר", "א", "ט", "ו", "ן", "ם", "פ", "ש", "ד", "ג", "כ", "\\",
             "caps", "ע", "י", "ח", "ל", "ך", "ף", ",", "ז", "ס", "ב", "ה",
             "shift", "נ", "מ", "צ", "ת", "ץ", ".", "ז", "ס", "ב", "ה", "shift",
             "space"
         },
-        // Раскладка для shift
+
         {"~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+",
             "ק", "ר", "א", "ט", "ו", "ן", "ם", "פ", "ש", "ד", "ג", "כ", "|",
             "caps", "ע", "י", "ח", "ל", "ך", "ף", ",", "ז", "ס", "ב", "ה",
             "shift", "נ", "מ", "צ", "ת", "ץ", ".", "ז", "ס", "ב", "ה", "shift",
             "space"
         },
-        // Раскладка для caps
+
         {"`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
             "ק", "ר", "א", "ט", "ו", "ן", "ם", "פ", "ש", "ד", "ג", "כ", "\\",
             "caps", "ע", "י", "ח", "ל", "ך", "ף", ",", "ז", "ס", "ב", "ה",
@@ -711,8 +705,6 @@ void MainWindow::setNewBoard() {
     }
 }
 
-////////////////////////////////
-////////////////////////////////
 
 void MainWindow::on_openFile_clicked()
 {
@@ -794,8 +786,6 @@ void MainWindow::generateText()
     string = randomText;
 }
 
-////////////////////////////////
-////////////////////////////////
 QPushButton *lastPressedButton = nullptr;
 
 
@@ -820,7 +810,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         if (onSpace) {
         }
     } else {
-        // Обрабатываем нажатие остальных клавиш
+
         QString key = event->text();
         for (int i = 0; i < currKeyboard[0].size(); i++) {
             if (currKeyboard[0][i] == key || currKeyboard[1][i] == key || currKeyboard[2][i] == key) {
