@@ -1,8 +1,11 @@
-# Создание банковского приложенuя
+# Создание игрового приложения симулятора жизни своего персонажжа
 
 Краткое описание 
 
 ## Блок-схема алгоритма хеширования SHA-256
+
+![изображение](https://github.com/Agronom2812/Fundamentals-of-algorithmization-and-programming/assets/160975896/fc607797-d2c7-4c7f-a88b-4fa0b2cfb89e)
+
 
 Применяется в: `AllUsersFile.cpp в методе Add_user_base_data_to_all_users_file, реализация в файле SHA-256.cpp`
 
