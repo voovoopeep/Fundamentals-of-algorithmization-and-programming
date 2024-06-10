@@ -1,33 +1,23 @@
-# Электронный крипто-кошелек на основе блокчейна
+# Создание игрового приложения симулятора жизни своего персонажа
 
-Крипто-кошелек в тестовой сети Hardhat
+Краткое описание
 
-Блок-схема авторизации
+Блок-схема алгоритма сохранения в файл
 
-Применяется в: `server/server.ts`; `client/src/api/post.tsx`; `client/src/pages/log/Log.tsx`;  
+Применяется в: `character.cpp`; `character.h`; `startpage.cpp`;  
 
-![image](https://github.com/taicutsun/Fundamentals-of-algorithmization-and-programming/assets/71333824/7ccac320-a204-46f1-a1a6-09fe2bd3d846)
+![изображение](https://github.com/Agronom2812/Fundamentals-of-algorithmization-and-programming/assets/160975896/822cef26-6fbf-4361-a2d7-e4e3a3f5adf5)
 
-Блок-схема отправки средств
 
-Применяется в: `server/server.ts`; `blockchain/contracts/Lock.sol`; `client/src/api/post.tsx`; `client/src/app/appSlice.tsx`; `client/src/pages/user/User.tsx`;  
+Блок-схема алгоритма непрерывного прохождения времени
 
-![image](https://github.com/taicutsun/Fundamentals-of-algorithmization-and-programming/assets/71333824/fca2fa3d-55b7-47ba-8faf-26e56b221daf)
+Применяется в: `mainwindow.cpp`; `mainwindow.h`; `character.cpp`; `character.h`;
 
-Блок-схема управления данными
+![изображение](https://github.com/Agronom2812/Fundamentals-of-algorithmization-and-programming/assets/160975896/2edceb0c-1b08-43c7-b477-ab8e8c5838b9)
 
-Применяется в:  `client/src/pages/*`; `client/src/app/*`;
 
-![image](https://github.com/taicutsun/Fundamentals-of-algorithmization-and-programming/assets/71333824/1a2a9587-eedd-44de-9a3a-da946d98c409)
+Блок-схема отрисовки колеса рулетки
 
-Блок-схема обновление токена
+Применяется в:  `casino.cpp`; `casino.h`;
 
-Применяется в: `server/server.ts`; `client/src/api/post.tsx`; `client/src/pages/user/User.tsx`; `client/src/pages/log/Log.tsx`;  
-
-![image](https://github.com/taicutsun/Fundamentals-of-algorithmization-and-programming/assets/71333824/37cbcbe4-9e58-459b-83f0-f574968d264e)
-
-Блок-схема создания пользователя
-
-Применяется в: `server/server.ts`; `client/src/api/post.tsx`; `client/src/app/appSlice.tsx`; `client/src/pages/user/User.tsx`;  
-
-![image](https://github.com/taicutsun/Fundamentals-of-algorithmization-and-programming/assets/71333824/950bfb29-2f3f-4af7-8622-2d61a9cf10d9)
+![изображение](https://github.com/Agronom2812/Fundamentals-of-algorithmization-and-programming/assets/160975896/4a427749-1fdd-4294-b58b-e3eb46fd1fe5)
