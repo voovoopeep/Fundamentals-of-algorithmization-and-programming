@@ -29,7 +29,7 @@ font: 700 italic 15pt &quot;Ubuntu&quot;;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>520</x>
